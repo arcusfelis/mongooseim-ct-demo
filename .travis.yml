@@ -1,14 +1,14 @@
 script:
-  - test $TRAVIS_SECURE_ENV_VARS = true && git config --global user.email "$(git --no-pager show -s --format='%ae' HEAD)"
-  - test $TRAVIS_SECURE_ENV_VARS = true && git config --global user.name "$(git --no-pager show -s --format='%an' HEAD)"
-  - test $TRAVIS_SECURE_ENV_VARS = true && mkdir -p ~\/.ssh\/
-  - test $TRAVIS_SECURE_ENV_VARS = true && openssl aes-256-cbc -K $encrypted_904b719f6b7c_key -iv $encrypted_904b719f6b7c_iv -in .travis_deploy_rsa.enc -out ~\/.ssh\/travis_deploy_rsa -d
-  - test $TRAVIS_SECURE_ENV_VARS = true && eval "$(ssh-agent -s)" #start the ssh agent
-  - test $TRAVIS_SECURE_ENV_VARS = true && chmod 600 ~\/.ssh\/travis_deploy_rsa # this key should have push access
-  - test $TRAVIS_SECURE_ENV_VARS = true && ssh-add ~\/.ssh\/travis_deploy_rsa
-  - test $TRAVIS_SECURE_ENV_VARS = true && git clone "git@github.com:arcusfelis/mongooseim-ct-reports.git"
-  - test $TRAVIS_SECURE_ENV_VARS = true && cd mongooseim-ct-reports
-  - test $TRAVIS_SECURE_ENV_VARS = true && echo "done" > "$TRAVIS_JOB_NUMBER"
-  - test $TRAVIS_SECURE_ENV_VARS = true && git add .
-  - test $TRAVIS_SECURE_ENV_VARS = true && git commit -m "Publish reports for $TRAVIS_JOB_NUMBER"
-  - test $TRAVIS_SECURE_ENV_VARS = true && for i in 1 2 3 4 5; do git push origin gh-pages && break; echo "Retry $i"; sleep $i; git pull; done
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && git config --global user.email "$(git --no-pager show -s --format='%ae' HEAD)"
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && git config --global user.name "$(git --no-pager show -s --format='%an' HEAD)"
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && mkdir -p ~\/.ssh\/
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && openssl aes-256-cbc -K $encrypted_904b719f6b7c_key -iv $encrypted_904b719f6b7c_iv -in .travis_deploy_rsa.enc -out ~\/.ssh\/travis_deploy_rsa -d
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && eval "$(ssh-agent -s)" #start the ssh agent
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && chmod 600 ~\/.ssh\/travis_deploy_rsa # this key should have push access
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && ssh-add ~\/.ssh\/travis_deploy_rsa
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && git clone "git@github.com:arcusfelis/mongooseim-ct-reports.git"
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && cd mongooseim-ct-reports
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && echo "done" > "$TRAVIS_JOB_NUMBER"
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && git add .
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && git commit -m "Publish reports for $TRAVIS_JOB_NUMBER"
+  - test "$TRAVIS_SECURE_ENV_VARS" = true && for i in 1 2 3 4 5; do git push origin gh-pages && break; echo "Retry $i"; sleep $i; git pull; done
